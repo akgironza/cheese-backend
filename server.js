@@ -51,14 +51,12 @@ const cheeseSchema = new mongoose.Schema({
 const Cheese = mongoose.model("Cheese", cheeseSchema);
 
 
-
 ///////////////////////////////
 // MIDDLEWARE
 ///////////////////////////////
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-
 
 
 ///////////////////////////////
@@ -68,6 +66,52 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+// INDEX - GET - /cheese
+app.get("/cheese", async (req, res) => {
+    try {
+        // show all cheeses
+        res.json(await Cheese.find({}));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
+
+// CREATE - POST - /cheese
+app.post("/cheese", async (req, res) => {
+    try {
+        // show all cheeses
+        res.json(await Cheese.create(req.body));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
+
+// CREATE - POST - /cheese
+// app.post("/cheese", async (req, res) => {
+//     try {
+//         // show all cheeses
+//         res.json(await Cheese.create(req.body));
+//     } catch (error) {
+//         // send error
+//         res.status(400).json(error);
+//     }
+// });
+
+// CREATE - POST - /cheese
+// app.post("/cheese", async (req, res) => {
+//     try {
+//         // show all cheeses
+//         res.json(await Cheese.create(req.body));
+//     } catch (error) {
+//         // send error
+//         res.status(400).json(error);
+//     }
+// });
+
+
 
 ///////////////////////////////
 // LISTENER
