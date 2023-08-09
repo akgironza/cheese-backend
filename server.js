@@ -89,27 +89,27 @@ app.post("/cheese", async (req, res) => {
     }
 });
 
-// CREATE - POST - /cheese
-// app.post("/cheese", async (req, res) => {
-//     try {
-//         // show all cheeses
-//         res.json(await Cheese.create(req.body));
-//     } catch (error) {
-//         // send error
-//         res.status(400).json(error);
-//     }
-// });
+// UPDATE - PUT - /cheese/:id
+app.put("/cheese/:id", async (req, res) => {
+    try {
+        // send all cheeses
+        res.json(await Cheese.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
 
-// CREATE - POST - /cheese
-// app.post("/cheese", async (req, res) => {
-//     try {
-//         // show all cheeses
-//         res.json(await Cheese.create(req.body));
-//     } catch (error) {
-//         // send error
-//         res.status(400).json(error);
-//     }
-// });
+// DESTROY - DELETE - /cheese/:id
+app.delete("/cheese/:id", async (req, res) => {
+    try {
+        // show all cheeses
+        res.json(await Cheese.findByIdAndRemove(req.params.id));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
 
 
 
